@@ -7,9 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'FinanceOS - Finance Management Platform',
+  description: 'Modern finance management platform for tracking income, expenses, and budgets',
 }
 
 export default function RootLayout({

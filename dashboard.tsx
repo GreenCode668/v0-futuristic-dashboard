@@ -49,7 +49,7 @@ export default function Dashboard() {
   const [memoryUsage, setMemoryUsage] = useState(68)
   const [networkStatus, setNetworkStatus] = useState(92)
   const [securityLevel, setSecurityLevel] = useState(75)
-  const [currentTime, setCurrentTime] = useState(new Date())
+  const [currentTime, setCurrentTime] = useState<Date | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -63,8 +63,11 @@ export default function Dashboard() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Update time
+  // Update time - Initialize on client side only
   useEffect(() => {
+    // Set initial time on mount (client-side only)
+    setCurrentTime(new Date())
+
     const interval = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
@@ -171,7 +174,8 @@ export default function Dashboard() {
   }
 
   // Format time
-  const formatTime = (date: Date) => {
+  const formatTime = (date: Date | null) => {
+    if (!date) return "--:--:--"
     return date.toLocaleTimeString("en-US", {
       hour12: false,
       hour: "2-digit",
@@ -181,7 +185,8 @@ export default function Dashboard() {
   }
 
   // Format date
-  const formatDate = (date: Date) => {
+  const formatDate = (date: Date | null) => {
+    if (!date) return "Loading..."
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
