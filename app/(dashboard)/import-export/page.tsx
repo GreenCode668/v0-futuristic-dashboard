@@ -38,7 +38,7 @@ export default function ImportExportPage() {
   const [previewData, setPreviewData] = useState<TransactionCSVRow[]>([])
   const [showPreview, setShowPreview] = useState(false)
 
-  const [exporting, setExportando... useState(false)
+  const [exporting, setExporting] = useState(false)
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, type: "csv" | "ofx") => {
     const file = event.target.files?.[0]
@@ -115,20 +115,20 @@ export default function ImportExportPage() {
       const transactionsToInsert = previewData.map((t) => {
         const accountId = t.account ? accountMap.get(t.account.toLowerCase()) : null
         const categoryId = t.category ? categoryMap.get(t.category.toLowerCase())?.id : null
-        const fromContaId = t.fromConta ? accountMap.get(t.fromConta.toLowerCase()) : null
-        const toContaId = t.toConta ? accountMap.get(t.toConta.toLowerCase()) : null
+        const fromAccountId = t.fromAccount ? accountMap.get(t.fromAccount.toLowerCase()) : null
+        const toAccountId = t.toAccount ? accountMap.get(t.toAccount.toLowerCase()) : null
 
         return {
           tenant_id: tenantId,
           type: t.type,
           amount: t.amount,
           description: t.description,
-          date: new Data(t.date).toISOString(),
+          date: new Date(t.date).toISOString(),
           notes: t.notes || null,
           account_id: accountId || (accounts && accounts.length > 0 ? accounts[0].id : null),
           category_id: categoryId,
-          from_account_id: fromContaId,
-          to_account_id: toContaId,
+          from_account_id: fromAccountId,
+          to_account_id: toAccountId,
         }
       })
 
@@ -158,7 +158,7 @@ export default function ImportExportPage() {
   }
 
   const handleExportCSV = async () => {
-    setExportando...ue)
+    setExporting(true)
 
     try {
       if (!tenantId) {
@@ -180,16 +180,16 @@ export default function ImportExportPage() {
       }
 
       const csvContent = generateCSV(transactions)
-      downloadCSV(csvContent, `transactions-export-${new Data().toISOString().split("T")[0]}.csv`)
+      downloadCSV(csvContent, `transactions-export-${new Date().toISOString().split("T")[0]}.csv`)
     } catch (error: any) {
       alert(error.message || "Failed to exportar transações")
     } finally {
-      setExportando...lse)
+      setExporting(false)
     }
   }
 
   const handleExportPDF = async () => {
-    setExportando...ue)
+    setExporting(true)
 
     try {
       if (!tenantId) {
@@ -198,8 +198,8 @@ export default function ImportExportPage() {
       }
 
       // Fetch data for report
-      const now = new Data()
-      const startOfMonth = new Data(now.getFullYear(), now.getMonth(), 1).toISOString()
+      const now = new Date()
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
 
       const { data: transactions, error } = await supabase
         .from("transactions")
@@ -221,7 +221,7 @@ export default function ImportExportPage() {
       const totalIncome = income.reduce((sum, t) => sum + t.amount, 0)
       const totalExpense = expenses.reduce((sum, t) => sum + t.amount, 0)
 
-      // Categoria breakdown
+      // Category breakdown
       const categoryMap = new Map()
       expenses.forEach((t) => {
         const categoryName = t.categories?.name || "Uncategorized"
@@ -237,7 +237,7 @@ export default function ImportExportPage() {
       const categoryData = Array.from(categoryMap.values())
 
       const reportData = {
-        period: now.toLocaleDataString("en-US", { month: "long", year: "numeric" }),
+        period: now.toLocaleDateString("en-US", { month: "long", year: "numeric" }),
         summary: {
           totalIncome,
           totalExpense,
@@ -252,7 +252,7 @@ export default function ImportExportPage() {
     } catch (error: any) {
       alert(error.message || "Failed to generate PDF report")
     } finally {
-      setExportando...lse)
+      setExporting(false)
     }
   }
 
@@ -283,7 +283,7 @@ export default function ImportExportPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Importar Import & Export Exportar
+            Importar & Exportar
           </h1>
           <p className="text-slate-400 mt-1">Importe transações de arquivos CSV/OFX ou exporte seus dados</p>
         </div>
@@ -343,7 +343,7 @@ export default function ImportExportPage() {
                     disabled={importStatus === "processing"}
                   >
                     <FileSpreadsheet className="h-4 w-4 mr-2" />
-                    Choose Arquivo CSV
+                    Escolher Arquivo CSV
                   </Button>
                 </label>
               </div>
@@ -371,7 +371,7 @@ export default function ImportExportPage() {
                     disabled={importStatus === "processing"}
                   >
                     <FileText className="h-4 w-4 mr-2" />
-                    Choose Arquivo OFX
+                    Escolher Arquivo OFX
                   </Button>
                 </label>
               </div>
@@ -484,7 +484,7 @@ export default function ImportExportPage() {
                     {previewData.slice(0, 10).map((transaction, index) => (
                       <tr key={index} className="border-b border-slate-800">
                         <td className="py-2 px-3 text-slate-300">
-                          {new Data(transaction.date).toLocaleDataString()}
+                          {new Date(transaction.date).toLocaleDateString()}
                         </td>
                         <td className="py-2 px-3">
                           <span
@@ -519,7 +519,7 @@ export default function ImportExportPage() {
           </Card>
         )}
 
-        {/* Modelo CSV Section */}
+        {/* CSV Template Section */}
         <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">

@@ -8,7 +8,7 @@ import { generateMockRecurringTransactions } from "@/lib/mockData"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { RecurringForm } from "@/components/finance/recurring-form"
-import { Plus, RefreshCw, ArrowDownRight, ArrowUpRight, Play, Pausar, AlertCircle } from "lucide-react"
+import { Plus, RefreshCw, ArrowDownRight, ArrowUpRight, Play, Pause, AlertCircle } from "lucide-react"
 
 type RecurringTransaction = {
   id: string
@@ -118,7 +118,7 @@ export default function RecurringPage() {
   }
 
   const activeCount = recurring.filter((r) => r.is_active).length
-  const totalMensalAmount = recurring
+  const totalMonthlyAmount = recurring
     .filter((r) => r.is_active && r.type === "expense")
     .reduce((sum, r) => {
       const multiplier = r.frequency === "daily" ? 30 : r.frequency === "weekly" ? 4.33 : r.frequency === "monthly" ? 1 : 0.083
@@ -187,7 +187,7 @@ export default function RecurringPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-red-400">{formatCurrency(totalMensalAmount)}</div>
+              <div className="text-3xl font-bold text-red-400">{formatCurrency(totalMonthlyAmount)}</div>
               <p className="text-xs text-slate-500 mt-1">Total mensal estimado</p>
             </CardContent>
           </Card>
@@ -248,7 +248,7 @@ export default function RecurringPage() {
                             {transaction.name}
                             {!transaction.is_active && (
                               <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-slate-700 text-slate-400">
-                                Pausard
+                                Pausada
                               </span>
                             )}
                           </div>
@@ -284,7 +284,7 @@ export default function RecurringPage() {
                         >
                           {transaction.is_active ? (
                             <>
-                              <Pausar className="h-4 w-4 mr-1" />
+                              <Pause className="h-4 w-4 mr-1" />
                               Pausar
                             </>
                           ) : (
@@ -300,7 +300,7 @@ export default function RecurringPage() {
                           onClick={() => handleEdit(transaction)}
                           className="border-slate-700 bg-slate-800/50 hover:bg-slate-700/50"
                         >
-                          Edit
+                          Editar
                         </Button>
                       </div>
                     </div>

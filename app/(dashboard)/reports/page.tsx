@@ -63,13 +63,13 @@ export default function ReportsPage() {
         start.setDate(now.getDate() - 7)
         break
       case "month":
-        start.setMês(now.getMês() - 1)
+        start.setMonth(now.getMonth() - 1)
         break
       case "quarter":
-        start.setMês(now.getMês() - 3)
+        start.setMonth(now.getMonth() - 3)
         break
       case "year":
-        start.setFullAno(now.getFullAno() - 1)
+        start.setFullYear(now.getFullYear() - 1)
         break
     }
 
@@ -192,7 +192,7 @@ export default function ReportsPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Relatórios Reports & Analytics Análises
+              Relatórios & Análises
             </h1>
             <p className="text-slate-400 mt-1">Visualize seus dados financeiros</p>
           </div>
@@ -259,7 +259,7 @@ export default function ReportsPage() {
 
           <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-400 font-normal">Total Income</CardTitle>
+              <CardTitle className="text-sm text-slate-400 font-normal">Total de Receitas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-green-400">
@@ -271,7 +271,7 @@ export default function ReportsPage() {
 
           <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-400 font-normal">Total Expenses</CardTitle>
+              <CardTitle className="text-sm text-slate-400 font-normal">Total de Despesas</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-red-400">
@@ -289,7 +289,7 @@ export default function ReportsPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-slate-200">{summary.topCategory}</div>
-              <p className="text-xs text-slate-500 mt-1">{summary.transactionCount} transactions</p>
+              <p className="text-xs text-slate-500 mt-1">{summary.transactionCount} transações</p>
             </CardContent>
           </Card>
         </div>
