@@ -1,0 +1,11 @@
+Date,Type,Amount,Description,Category,Account,From Account,To Account,Notes
+2025-11-01,expense,45.50,Grocery shopping,Food & Dining,Checking,,,Weekly groceries
+2025-11-01,income,3500.00,Salary payment,Salary,Checking,,,Monthly salary
+2025-11-02,transfer,500.00,Savings transfer,,,Checking,Savings,Monthly savings
+2025-11-03,expense,120.00,Electric bill,Utilities,Checking,,,October bill
+2025-11-03,expense,89.99,Internet subscription,Subscriptions,Credit Card,,,Monthly internet
+2025-11-04,expense,35.00,Restaurant dinner,Food & Dining,Credit Card,,,Dinner with friends
+2025-11-05,income,150.00,Freelance work,Freelance,Checking,,,Project payment
+2025-11-06,expense,65.00,Gas station,Transportation,Credit Card,,,Fill up tank
+2025-11-07,expense,199.99,Software subscription,Subscriptions,Credit Card,,,Annual license
+2025-11-08,expense,250.00,Gym membership,Health & Fitness,Checking,,,Quarterly membership
