@@ -27,13 +27,13 @@ export default function SignupPage() {
 
     // Validation
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
+      setError("As senhas não coincidem")
       setLoading(false)
       return
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters")
+      setError("A senha deve ter pelo menos 6 caracteres")
       setLoading(false)
       return
     }
@@ -84,16 +84,16 @@ export default function SignupPage() {
               <Hexagon className="h-12 w-12 text-cyan-500" />
             </div>
             <CardTitle className="text-2xl text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Check Your Email
+              Verifique seu E-mail
             </CardTitle>
             <CardDescription className="text-center text-slate-400">
-              We've sent you a confirmation email. Please check your inbox to verify your account.
+              Enviamos um e-mail de confirmação. Por favor, verifique sua caixa de entrada para verificar sua conta.
             </CardDescription>
           </CardHeader>
           <CardFooter className="flex justify-center">
             <Link href="/login">
               <Button variant="outline" className="border-slate-700 bg-slate-800/50 hover:bg-slate-700/50">
-                Go to Login
+                Ir para Login
               </Button>
             </Link>
           </CardFooter>
@@ -110,10 +110,10 @@ export default function SignupPage() {
             <Hexagon className="h-12 w-12 text-cyan-500" />
           </div>
           <CardTitle className="text-2xl text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Create Account
+            Criar Conta
           </CardTitle>
           <CardDescription className="text-center text-slate-400">
-            Get started with your finance management
+            Comece com sua gestão financeira
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -126,14 +126,14 @@ export default function SignupPage() {
 
             <div className="space-y-2">
               <Label htmlFor="fullName" className="text-slate-300">
-                Full Name
+                Nome Completo
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
                 <input
                   id="fullName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="João Silva"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
@@ -180,7 +180,7 @@ export default function SignupPage() {
 
             <div className="space-y-2">
               <Label htmlFor="confirmPassword" className="text-slate-300">
-                Confirm Password
+                Confirmar Senha
               </Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
@@ -201,15 +201,15 @@ export default function SignupPage() {
               disabled={loading}
               className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
             >
-              {loading ? "Creating account..." : "Sign Up"}
+              {loading ? "Criando conta..." : "Cadastrar"}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-slate-400">
-            Already have an account?{" "}
+            Já tem uma conta?{" "}
             <Link href="/login" className="text-cyan-400 hover:text-cyan-300">
-              Sign in
+              Entrar
             </Link>
           </p>
         </CardFooter>

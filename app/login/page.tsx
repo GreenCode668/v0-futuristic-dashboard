@@ -66,10 +66,10 @@ export default function LoginPage() {
             <Hexagon className="h-12 w-12 text-cyan-500" />
           </div>
           <CardTitle className="text-2xl text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Welcome Back
+            Bem-vindo de Volta
           </CardTitle>
           <CardDescription className="text-center text-slate-400">
-            Sign in to your finance dashboard
+            Entre no seu painel financeiro
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -121,7 +121,7 @@ export default function LoginPage() {
               disabled={loading}
               className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
             >
-              {loading ? "Signing in..." : "Sign In"}
+              {loading ? "Entrando..." : "Entrar"}
             </Button>
           </form>
 
@@ -130,7 +130,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-slate-700/50"></div>
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-slate-900/50 px-2 text-slate-500">Or continue with</span>
+              <span className="bg-slate-900/50 px-2 text-slate-500">Ou continue com</span>
             </div>
           </div>
 
@@ -159,14 +159,14 @@ export default function LoginPage() {
                 fill="#EA4335"
               />
             </svg>
-            Sign in with Google
+            Entrar com Google
           </Button>
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-slate-400">
-            Don't have an account?{" "}
+            Não tem uma conta?{" "}
             <Link href="/signup" className="text-cyan-400 hover:text-cyan-300">
-              Sign up
+              Cadastre-se
             </Link>
           </p>
         </CardFooter>
